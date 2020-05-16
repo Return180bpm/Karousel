@@ -51,6 +51,8 @@
         }
     });
 
+    document.getElementsByClassName("tester")[0].textContent = "hello";
+
     for (let i = 0; i < dots.length; i++) {
         const dot = dots[i];
 
