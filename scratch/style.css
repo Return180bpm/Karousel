@@ -1,0 +1,55 @@
+body {
+    margin: 0 0;
+    box-sizing: border-box;
+    background-color: silver;
+    height: 100vh;
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+}
+
+.carousel {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* flex-flow: column nowrap; */
+    z-index: 1;
+}
+
+.carousel img {
+    height: 100%;
+}
+/* 
+.dot-wrapper {
+    position: absolute;
+    bottom: 2em;
+    width: 100%
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+} */
+
+.dot {
+    width: 0.8em;
+    height: 0.8em;
+    border: 3px solid snow;
+    border-radius: 50%;
+    align-self: flex-end;
+    margin: 0 0.2em;
+    cursor: pointer;
+}
+
+.dot:hover {
+    background-color: snow;
+}
+
+.carousel-item-hidden {
+    display: none;
+}
+
+.carousel-item-visible {
+    display: block;
+}
