@@ -1,7 +1,6 @@
 (function () {
     var kitties = document.querySelectorAll(".carousel img");
     var dots = document.getElementsByClassName("dot");
-    var counter = 0;
     var whichVisible = 0;
 
     var myTimeOut;
@@ -18,7 +17,11 @@
         if (which > kitties.length - 1) {
             which = 0;
         }
+        if (which < 0) {
+            which = kitties.length - 1;
+        }
         if (which != whichVisible) {
+            console.log("which", which);
             clearTimeout(myTimeOut);
 
             if (kitties[which].classList.contains("offscreen")) {
@@ -29,12 +32,12 @@
             kitties[whichVisible].classList.remove("onscreen");
             kitties[whichVisible].classList.add("offscreen");
 
-            console.log(which);
+            // console.log(which);
 
             dots[which].classList.add("dot-active");
             kitties[which].classList.add("onscreen");
 
-            console.log(kitties[which].classList);
+            // console.log(kitties[which].classList);
             whichVisible = which;
         }
         myTimeOut = setTimeout(function () {
@@ -64,8 +67,25 @@
     }, 1500);
     // setInterval(makeVisible, 1500);
 
+    var touchStartX;
+    var touchEndX;
+
     document.addEventListener("touchstart", function (event) {
-        // console.log(event);
+        touchStartX = event.changedTouches[0].clientX;
+        console.log(touchStartX);
+    });
+
+    document.addEventListener("touchend", function (event) {
+        touchEndX = event.changedTouches[0].clientX;
+
+        if (Math.abs(touchStartX - touchEndX) > 10) {
+            if (touchStartX > touchEndX) {
+                makeVisible(whichVisible - 1);
+            } else {
+                makeVisible(whichVisible + 1);
+            }
+            // console.log(touchEndX);
+        }
     });
     // console.log(kitties);
 })();
